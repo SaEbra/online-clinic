@@ -1,0 +1,35 @@
+<div *ngIf="appointment">
+  <div>
+    <label>Name: </label> {{appointment.name}}
+  </div>
+
+  <div>
+    <label>Gender: </label> {{appointment.gender}}
+  </div>
+
+  <div>
+    <label>Age: </label> {{appointment.age}}
+  </div>
+
+  <div>
+    <label>Phone.No: </label> {{appointment.phone}}
+  </div>
+
+  <div>
+    <label>Email: </label> {{appointment.email}}
+  </div>
+
+  <div>
+    <label>Short Description: </label> {{appointment.shortDescription}}
+  </div>
+  
+  <div>
+    <label>Booking Date: </label> {{appointment.bookingDate}}
+  </div>
+  
+  <span class="btn is-small btn-primary " *ngIf='!appointment.confirm' (click)='updateConfirm(true)'>Confirm</span>
+  <span class="success" *ngIf='appointment.confirm'> <i title='Confirmed' class="fas fa-check-circle"></i> </span> 
+  <span class="btn is-small btn-danger btnDelete" (click)='deleteAppointment()'>Delete</span>
+ 
+  <hr/>
+</div>

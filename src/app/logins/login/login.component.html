@@ -1,0 +1,26 @@
+<div class="continar">
+  <div class="loginTitle">
+    <h2>login</h2>
+  </div>
+  <div class="form">
+    
+    <form #registerForm="ngForm" class="loginForm">
+      <div class="form-group">
+        <label>Email address</label>
+        <input type="email" name="email" class="form-control" required [(ngModel)]="authModel.email">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" name="password" required [(ngModel)]="authModel.password">
+        <label class="error">{{errorMessage}}</label>
+        <label class="success">{{successMessage}}</label>
+      </div>
+      
+      <div class="formBtn">
+        <button type="submit" class="btn btn-primary" (click)="tryRegister(registerForm.value)" >Log In</button>
+      </div>
+    </form>
+    
+
+  </div>
+</div>

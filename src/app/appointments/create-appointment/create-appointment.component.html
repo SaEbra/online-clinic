@@ -1,0 +1,117 @@
+<div class="container-fluid" style="padding:0;">
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#"> <img src="assets/logo.png"></a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="container">
+            <div class="title">
+                <h1>Book an online appointment with Our Doctors.</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="bookingBtn">
+                <button type="button" id="clicked" class="btn btn-outline-primary" data-toggle="modal" data-target="#updateUserModal">Book Now</button>
+                
+            </div>
+        </div>
+    </div>
+    <!-- {{ bookForm.form.valid }} -->
+    <!-- Modal -->
+    <div class="modal fade" id="updateUserModal" role="dialog" aria-labelledby="addExtraSittingForPMATitle" >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addExtraSittingForPMATitle">Booking An Appointment</h5>
+            <button type="button" class="close" (click)="onModalClose()" id='closeModal' data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div [hidden]="submitted">
+              <form  #bookForm="ngForm" (ngSubmit)="onSubmit()" id='bookForm' novalidate>
+                  <input type="hidden" name="user_id_update" id="user_id_update">
+                  <div class="modal-body">
+                      <div class="form-group row">
+                          <label for="text1" class="col-sm-3 col-form-label required-field">Name</label>
+                          <div class="col-sm-9">
+                          <input type="text" class="form-control" [class.is-invalid]="name.invalid && name.touched" #name="ngModel" name="name" id="name" required autocomplete="off" [(ngModel)]="appointment.name">
+                          <small class="text-danger" [class.d-none]="name.valid || name.untouched " >Name is required</small>
+                          </div>
+                      </div>
+                      
+                      <fieldset class="form-group">
+                          <div class="row">
+                              <legend class="col-form-label col-sm-3 pt-0  required-field">Gender</legend>
+                              <div class="col-sm-9">
+                                <select (blur)="validateGender(gender.value)" (change)="validateGender(gender.value)" #gender="ngModel" [class.is-invalid]="genderHasError && gender.touched" class="form-control" name="gender" [(ngModel)]="appointment.gender"  >
+                                  <option value="defult">Choose..</option>
+                                  <option *ngFor="let gender of genders" >{{gender}}</option>
+                                </select>
+                                <small class="text-danger" [class.d-none]="!genderHasError || gender.untouched" >Please choose a gender</small>
+                              </div>
+                          </div>
+                      </fieldset>
+                      <div class="form-group row">
+                          <label for="text1" class="col-sm-3 col-form-label required-field">Age</label>
+                          <div class="col-sm-9">
+                          <input #age="ngModel" [class.is-invalid]="age.invalid && age.touched" type="number" min="1" class="form-control animationBottomBorder" name="age" id="age" [(ngModel)]="appointment.age" required> 
+                          <small class="text-danger" [class.d-none]="age.valid || age.untouched " >Age is required</small>
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="inputEmail3" class="col-sm-3 col-form-label required-field">Phone. No</label>
+                          <div class="col-sm-9">
+                              <input type="tel" name='phone' [class.is-invalid]="phone.invalid && phone.touched" #phone="ngModel" pattern="^\d{10}$" id='phone' class="form-control" autocomplete="off" [(ngModel)]="appointment.phone" required>
+                              <div *ngIf="phone.errors && (phone.invalid && phone.touched) ">
+                                <small class="text-danger" *ngIf="phone.errors.required" >Phone number is required </small>
+                                <small class="text-danger" *ngIf="phone.errors.pattern" >Phone number must be 10 digits</small>
+                              </div>
+                              
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
+                          <div class="col-sm-9">
+                              <input type="email" class="form-control animationBottomBorder checkEmail" name='email' id="email" placeholder="Email" autocomplete="off" [(ngModel)]="appointment.email"> 
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="text1" class="col-sm-3 col-form-label required-field">Short Description</label>
+                          <div class="col-sm-9">
+                          <textarea class="form-control" name='shortDescription' autocomplete="off" [(ngModel)]="appointment.shortDescription" required></textarea>
+                          <span class="focus-border"></span>
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="text1" class="col-sm-3 col-form-label required-field">Booking Date</label>
+                          <div class="col-sm-9">
+                            <input type="date" class="form-control" name="bookingDate" id="bookingDate" [(ngModel)]="appointment.bookingDate" required> 
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" (ngClick)="onModalClose()"  data-dismiss="modal">Close</button>
+                      <button [disabled]="bookForm.form.invalid || genderHasError" type="submit" class="btn btn-primary">  Save </button> 
+                  </div>
+
+              </form>
+          </div>
+
+          <div [hidden]="!submitted" id='submitted'>
+              <h4>You submitted successfully!</h4>
+              <!-- <button class="btn btn-success" (click)="newAppointment()">Add</button> -->
+          </div>
+
+        </div>
+      </div> 
+    </div>
+ 
+</div>

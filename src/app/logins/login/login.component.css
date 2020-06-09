@@ -1,0 +1,13 @@
+
+.loginForm{
+    max-width: 50%;
+    margin: 0 auto;
+}
+.formBtn{
+    width:100%;
+    text-align: center;
+}
+.loginTitle{
+    margin-top: 40px;
+    text-align: center;
+}

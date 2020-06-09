@@ -1,0 +1,11 @@
+
+<div class="container">
+  <h1>Appointments</h1>
+  <br>
+  <div *ngFor="let appointment of appointments">
+    <app-appointment-details [appointment]='appointment'></app-appointment-details>
+  </div>
+  <div style="margin-top:20px;">
+    <button type="button" class="btn btn-danger" (click)='deleteAppointments()'>Delete All</button>
+  </div>
+</div>
